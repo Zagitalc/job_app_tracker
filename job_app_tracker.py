@@ -105,6 +105,13 @@ def fetch_job_emails(service):
                     sender = header["value"]
                 elif header["name"] == "Date":
                     date = header["value"]
+            # Filter out emails from "Morning Brew" and any related to "Coursera"
+            if (
+                "morning brew" in sender.lower()
+                or "coursera" in subject.lower()
+                or "coursera" in sender.lower()
+            ):
+                continue
             body = ""
             # Check if the email body is directly available
             if "data" in msg_detail.get("payload", {}).get("body", {}):
@@ -170,7 +177,14 @@ def parse_email(email):
             break
 
     # Determine rejection stage by checking for negative keywords
-    rejection_keywords = ["rejected", "not selected", "declined", "unfortunately"]
+    rejection_keywords = [
+        "rejected",
+        "not selected",
+        "declined",
+        "unfortunately",
+        "thank you for applying",
+        "move on with other candidates",
+    ]
     rejection_stage = ""
     if any(word in text for word in rejection_keywords):
         rejection_stage = "Rejected"
