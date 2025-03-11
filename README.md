@@ -31,7 +31,7 @@ A Python application that integrates with both the **Gmail API** and the **Googl
 
 ## Prerequisites
 
-1. **Python 3.8+** (tested with 3.8 and above)
+1. **Python 3.11+** (tested with 3.11 and above)
 2. A **Google Cloud project** with the following APIs enabled:
    - [Gmail API](https://console.cloud.google.com/apis/library/gmail.googleapis.com)
    - [Google Sheets API](https://console.cloud.google.com/apis/library/sheets.googleapis.com)
